@@ -5,10 +5,11 @@ return {
   opts = {
     preset = "helix",
     defaults = {},
-    width = 100,  -- Make the window wider
-    layout = {
-      align = "center",  -- Center the window
-      spacing = 3,       -- Add some spacing
+    popup = {
+      position = "center",
+      width = function()
+        return math.floor(vim.o.columns * 0.8)  -- 80% of screen width
+      end,
     },
     spec = {
       {
