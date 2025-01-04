@@ -3,14 +3,30 @@ return {
   event = "VeryLazy",
   opts_extend = { "spec" },
   opts = {
+    plugins = {
+      marks = true,
+      registers = true,
+      spelling = {
+        enabled = true,
+        suggestions = 20,
+      },
+    },
+    window = {
+      border = "single",
+      position = "bottom",
+      margin = { 1, 0, 1, 0 },
+      padding = { 1, 2, 1, 2 },
+      winblend = 0,
+      width = { min = math.floor(vim.o.columns * 0.8), max = math.floor(vim.o.columns * 0.9) },
+    },
+    layout = {
+      height = { min = 4, max = 25 },
+      width = { min = 20, max = 50 },
+      spacing = 3,
+      align = "center",
+    },
     preset = "helix",
     defaults = {},
-    popup = {
-      position = "center",
-      width = function()
-        return math.floor(vim.o.columns * 0.8)  -- 80% of screen width
-      end,
-    },
     spec = {
       {
         mode = { "n", "v" },
