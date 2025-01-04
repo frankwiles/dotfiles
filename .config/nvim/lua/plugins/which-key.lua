@@ -5,6 +5,11 @@ return {
   opts = {
     preset = "helix",
     defaults = {},
+    width = 100,  -- Make the window wider
+    layout = {
+      align = "center",  -- Center the window
+      spacing = 3,       -- Add some spacing
+    },
     spec = {
       {
         mode = { "n", "v" },
