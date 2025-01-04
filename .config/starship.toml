@@ -1,0 +1,16 @@
+command_timeout = 750
+
+[nodejs]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[docker_context]
+disabled = true
