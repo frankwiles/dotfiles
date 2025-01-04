@@ -11,17 +11,17 @@ return {
         suggestions = 20,
       },
     },
-    window = {
+    win = {
       border = "single",
       position = "bottom",
       margin = { 1, 0, 1, 0 },
       padding = { 1, 2, 1, 2 },
       winblend = 0,
-      width = { min = math.floor(vim.o.columns * 0.8), max = math.floor(vim.o.columns * 0.9) },
+      width = { min = 80, max = 90 },
     },
     layout = {
       height = { min = 4, max = 25 },
-      width = { min = 20, max = 50 },
+      width = { min = 80, max = 100 },
       spacing = 3,
       align = "center",
     },
