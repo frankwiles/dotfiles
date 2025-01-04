@@ -3,29 +3,7 @@ return {
   event = "VeryLazy",
   opts_extend = { "spec" },
   opts = {
-    plugins = {
-      marks = true,
-      registers = true,
-      spelling = {
-        enabled = true,
-        suggestions = 20,
-      },
-    },
-    win = {
-      border = "single",
-      position = "bottom",
-      margin = { 1, 0, 1, 0 },
-      padding = { 1, 2, 1, 2 },
-      winblend = 0,
-      width = { min = 80, max = 90 },
-    },
-    layout = {
-      height = { min = 4, max = 25 },
-      width = { min = 80, max = 100 },
-      spacing = 3,
-      align = "center",
-    },
-    preset = "helix",
+    preset = "classic",
     defaults = {},
     spec = {
       {
@@ -82,9 +60,9 @@ return {
       desc = "Window Hydra Mode (which-key)",
     },
   },
+
   config = function(_, opts)
     local wk = require("which-key")
-
     wk.setup(opts)
     if not vim.tbl_isempty(opts.defaults) then
       LazyVim.warn("which-key: opts.defaults is deprecated. Please use opts.spec instead.")
