@@ -8,12 +8,12 @@ map("x", "/", "gc", { remap = true })
 map("n", "/", "gcc", { remap = true })
 
 -- Find TODOs and comment
-map("n", "<leader>ft",
-  function()
-    require('fzf-lua').grep({
-      search = 'TODO|HACK|PERF|NOTE|FIX',
-      no_esc = true
-    })
-  end,
-  { desc = "Find TODOs and annotations" }
-)
+map("n", "<leader>ft", function()
+  require("fzf-lua").grep({
+    search = "TODO|HACK|PERF|NOTE|FIX",
+    no_esc = true,
+  })
+end, { desc = "Find TODOs and annotations" })
+
+-- Find keymaps
+map("n", "<leader>fk", "<cmd>FzfLua keymaps<CR>", { desc = "Search keymaps" })
