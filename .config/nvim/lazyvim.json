@@ -1,6 +1,6 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.ai.tabnine"
   ],
   "news": {
     "NEWS.md": "10960"
