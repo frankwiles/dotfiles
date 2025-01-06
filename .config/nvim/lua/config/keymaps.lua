@@ -10,9 +10,9 @@ map("n", "<", "<gv")
 
 -- Better comment / uncomment
 -- For visual mode (commenting selected blocks)
-map("x", "/", "gc", { remap = true })
+map("x", '"', "gc", { remap = true })
 -- Normal mode for a single line
-map("n", "/", "gcc", { remap = true })
+map("n", '"', "gcc", { remap = true })
 
 -- Find TODOs and comment
 map("n", "<leader>ft", function()
