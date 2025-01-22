@@ -8,6 +8,9 @@ local config = wezterm.config_builder()
 config.font = wezterm.font("Monaco")
 config.font_size = 18.0
 
+config.initial_rows = 30
+config.initial_cols = 100
+
 -- For example, changing the color scheme:
 
 config.keys = {
@@ -16,6 +19,11 @@ config.keys = {
 		key = "k",
 		mods = "CMD",
 		action = act.ClearScrollback("ScrollbackAndViewport"),
+	},
+	{
+		key = "p",
+		mods = "CMD",
+		action = wezterm.action.ActivateCommandPalette,
 	},
 }
 

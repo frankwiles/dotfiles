@@ -42,3 +42,28 @@ map("n", "<leader>js", function()
   -- Format it
   vim.cmd("%!jq .")
 end, { desc = "New JSON scratch buffer" })
+
+
+-- fzf remaps
+
+-- Override file finding mappings
+map("n", "<leader><space>", function()
+  require('fzf-lua').files({
+    cwd = vim.fn.getcwd(),
+    cwd_only = false
+  })
+end, { desc = "Find files from root" })
+
+map("n", "<leader>ff", function()
+  require('fzf-lua').files({
+    cwd = vim.fn.getcwd(),
+    cwd_only = false
+  })
+end, { desc = "Find files" })
+
+map("n", "<leader>fg", function()
+  require('fzf-lua').live_grep({
+    cwd = vim.fn.getcwd(),
+    cwd_only = false
+  })
+end, { desc = "Live grep" })
