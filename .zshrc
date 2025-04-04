@@ -109,6 +109,10 @@ pulldiff() {
   git diff @{1}..
 }
 
+appleallow() {
+  xattr -d com.apple.quarantine $@
+}
+
 eval "$(atuin init zsh)"
 
 source ~/src/dotfiles/zshrc_secrets
