@@ -57,13 +57,57 @@ function rd() {
     fd "$1" $(git root)
 }
 
+export PYTHONDONTWRITEBYTECODE=true
+export PIP_REQUIRE_VIRTUALENV=1
+
 # Global pip install
 function gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
-export PYTHONDONTWRITEBYTECODE=true
-export PIP_REQUIRE_VIRTUALENV=true
+# Custom aider command line options
+alias 'myaider'='aider --no-auto-commits --no-attribute-commit-message-committer --vim'
+
+# Ability to toggle on/off the pip venv requirement
+toggle_pip_venv() {
+  if [[ "${PIP_REQUIRE_VIRTUALENV}" == "1" ]]; then
+    unset PIP_REQUIRE_VIRTUALENV
+    echo "PIP_REQUIRE_VIRTUALENV is now OFF"
+  else
+    export PIP_REQUIRE_VIRTUALENV=1
+    echo "PIP_REQUIRE_VIRTUALENV is now ON"
+  fi
+}
+
+# Create custom Frank .envrc layout
+setup_uv_project() {
+    set -euo pipefail
+
+    if [ ! -f ".local_env" ]; then
+        echo "Creating .local_env"
+        touch .local_env
+    fi
+
+    if [ ! -f ".envrc" ]; then
+        echo "Creating .envrc"
+        touch .envrc
+        echo "layout_uv" >> .envrc
+        echo "dotenv .local_env" >> .envrc
+        echo "PATH_add ./bin/" >> .envrc
+    fi
+}
+
+ackopen() {
+  nvim $(ack -l "$@")
+}
+
+pulllog() {
+  git log @{1}..
+}
+
+pulldiff() {
+  git diff @{1}..
+}
 
 eval "$(atuin init zsh)"
 
