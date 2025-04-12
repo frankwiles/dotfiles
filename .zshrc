@@ -113,6 +113,37 @@ appleallow() {
   xattr -d com.apple.quarantine $@
 }
 
+# Remove any random Docker volumes that do not have real names from compose
+remove_random_docker_volumes() {
+  # List all volumes that don't contain hyphens or underscores
+  volumes_to_remove=$(docker volume ls -q | grep -v '[-_]')
+
+  # Check if any volumes were found
+  if [[ -z "$volumes_to_remove" ]]; then
+    echo "No volumes without hyphens or underscores found."
+    exit 0
+  fi
+
+  # Show volumes that will be removed
+  echo "The following volumes will be removed:"
+  echo "$volumes_to_remove"
+
+  # Ask for confirmation
+  read -q "REPLY?Are you sure you want to remove these volumes? (y/n) "
+  echo ""
+
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    # Remove each volume
+    echo "$volumes_to_remove" | while read -r volume; do
+      echo "Removing volume: $volume"
+      docker volume rm "$volume"
+    done
+    echo "Done!"
+  else
+    echo "Operation cancelled."
+  fi
+}
+
 eval "$(atuin init zsh)"
 
 source ~/src/dotfiles/zshrc_secrets
