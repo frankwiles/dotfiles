@@ -101,6 +101,10 @@ ackopen() {
   nvim $(ack -l "$@")
 }
 
+fullack() {
+  ack --noenv $@
+}
+
 pulllog() {
   git log @{1}..
 }
