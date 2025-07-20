@@ -14,7 +14,7 @@ return {
       "json-lsp",
       "lua-language-server",
       "pyright",
-      "ruff-lsp",
+      "ruff",
       "rustywind",
       "tailwindcss-language-server",
       "typescript-language-server",
