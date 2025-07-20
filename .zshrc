@@ -148,6 +148,11 @@ remove_random_docker_volumes() {
   fi
 }
 
+new_justfile () {
+  touch Justfile
+  echo "@default:\n    just --list\n\n" >> Justfile 
+}
+
 eval "$(atuin init zsh)"
 
 source ~/src/dotfiles/zshrc_secrets
