@@ -43,30 +43,31 @@ map("n", "<leader>js", function()
   vim.cmd("%!jq .")
 end, { desc = "New JSON scratch buffer" })
 
-
 -- fzf remaps
 
 -- Override file finding mappings
 map("n", "<leader><space>", function()
-  require('fzf-lua').files({
+  require("fzf-lua").files({
     cwd = vim.fn.getcwd(),
-    cwd_only = false
+    cwd_only = false,
   })
 end, { desc = "Find files from root" })
 
 map("n", "<leader>ff", function()
-  require('fzf-lua').files({
+  require("fzf-lua").files({
     cwd = vim.fn.getcwd(),
-    cwd_only = false
+    cwd_only = false,
   })
 end, { desc = "Find files" })
 
 map("n", "<leader>fg", function()
-  require('fzf-lua').live_grep({
-    cwd = vim.fn.getcwd(),
-    cwd_only = false
-  })
-end, { desc = "Live grep" })
+  local search_term = vim.fn.input("Search: ")
+  if search_term ~= "" then
+    vim.o.grepprg = "rg --vimgrep --smart-case --hidden"
+    vim.cmd("grep! " .. vim.fn.shellescape(search_term))
+    vim.cmd("copen")
+  end
+end, { desc = "Ripgrep search" })
 
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
