@@ -11,5 +11,7 @@ layout_uv() {
 
     PATH_add "$VIRTUAL_ENV/bin"
     export UV_ACTIVE=1  # or VENV_ACTIVE=1
+    export VENV_ACTIVE=1
+    export UV_PYTHON="$(pwd)/venv/bin/python"
     export VIRTUAL_ENV
 }
