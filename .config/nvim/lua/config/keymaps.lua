@@ -70,3 +70,4 @@ end, { desc = "Live grep" })
 
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
+map("n", "<leader>tt", "<cmd>enew | terminal<CR>i", { desc = "Open new terminal buffer" })
