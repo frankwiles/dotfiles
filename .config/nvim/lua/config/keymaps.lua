@@ -67,3 +67,6 @@ map("n", "<leader>fg", function()
     cwd_only = false
   })
 end, { desc = "Live grep" })
+
+-- Buffer management
+map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
