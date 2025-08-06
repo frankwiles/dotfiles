@@ -69,6 +69,27 @@ map("n", "<leader>fg", function()
   end
 end, { desc = "Ripgrep search" })
 
+-- File path display and copy
+map("n", "<leader>fp", function()
+  local current_file = vim.fn.expand("%:p")
+  if current_file == "" then
+    print("No file in current buffer")
+    return
+  end
+  
+  local git_root = vim.fn.system("git rev-parse --show-toplevel 2>/dev/null"):gsub("%s+$", "")
+  local display_path
+  
+  if vim.v.shell_error == 0 and git_root ~= "" then
+    display_path = vim.fn.fnamemodify(current_file, ":s?" .. git_root .. "/??")
+  else
+    display_path = current_file
+  end
+  
+  vim.fn.setreg("+", display_path)
+  print("Copied to clipboard: " .. display_path)
+end, { desc = "Copy file path to clipboard" })
+
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
 map("n", "<leader>tt", "<cmd>enew | terminal<CR>i", { desc = "Open new terminal buffer" })
