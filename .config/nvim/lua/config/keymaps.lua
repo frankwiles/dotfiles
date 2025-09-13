@@ -90,6 +90,35 @@ map("n", "<leader>fp", function()
   print("Copied to clipboard: " .. display_path)
 end, { desc = "Copy file path to clipboard" })
 
+-- Python LSP keymaps
+map("n", "<leader>co", function()
+  vim.lsp.buf.code_action({
+    context = { only = { "source.organizeImports" } },
+    apply = true,
+  })
+end, { desc = "Organize Imports" })
+
+map("n", "<leader>cf", function()
+  vim.lsp.buf.code_action({
+    context = { only = { "source.fixAll" } },
+    apply = true,
+  })
+end, { desc = "Fix All Issues" })
+
+
+-- Alternative auto-import that shows all available actions
+map("n", "<leader>cI", function()
+  vim.lsp.buf.code_action({
+    filter = function(action)
+      return action.kind and (
+        action.kind:match("quickfix") or
+        action.kind:match("source") or
+        action.title:lower():match("import")
+      )
+    end,
+  })
+end, { desc = "Show Import Actions" })
+
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
 map("n", "<leader>tt", "<cmd>enew | terminal<CR>i", { desc = "Open new terminal buffer" })

@@ -15,16 +15,6 @@ require("config.lazy")
 --   log_file_path = nil, -- absolute path to Tabnine log file
 --   ignore_certificate_errors = false,
 -- })
-require("lspconfig").ruff.setup({
-  root_dir = function()
-    return vim.fn.getcwd()
-  end,
-  init_options = {
-    settings = {
-      logLevel = "info",
-    },
-  },
-})
 
 -- In init.lua
 local function tailwind_color_replace(from_color, to_color)
