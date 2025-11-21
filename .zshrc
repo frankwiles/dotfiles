@@ -13,6 +13,8 @@ if [ -f '/Users/frank/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 export EDITOR=nvim
 
+export DIRENV_WARN_TIMEOUT=60m
+
 #########################
 # Kubectl
 #########################
