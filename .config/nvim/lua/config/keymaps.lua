@@ -50,6 +50,7 @@ map("n", "<leader><space>", function()
   require("fzf-lua").files({
     cwd = vim.fn.getcwd(),
     cwd_only = false,
+    fd_opts = "--color=never --type f --hidden --follow --no-ignore --exclude .git",
   })
 end, { desc = "Find files from root" })
 
