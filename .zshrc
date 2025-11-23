@@ -66,8 +66,6 @@ source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
 
-#export PATH="/Users/frank/.pyenv/shims:/Users/frank/bin/google-cloud-sdk/bin:/Users/frank/.krew/bin:/frank/.nvm/versions/node/v16.13.2/bin:/opt/homebrew/bin:$PATH:/Users/frank/.local/bin"
-
 # Git customization
 alias r='cd $(git root)'
 function rd() {
