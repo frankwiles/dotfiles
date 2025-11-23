@@ -2,6 +2,9 @@
 
 autoload -U zmv
 
+# Vim mode
+bindkey -v
+
 fpath=(~/.zsh_completions $fpath)
 eval "$(starship init zsh)"
 
@@ -14,6 +17,9 @@ if [ -f '/Users/frank/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 export EDITOR=nvim
 
 export DIRENV_WARN_TIMEOUT=60m
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 #########################
 # Kubectl
@@ -46,12 +52,21 @@ export DOCKER_BUILDKIT=1
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_SCAN_SUGGEST=false
 
+
+# Cargo
+. "$HOME/.cargo/env"
+
+alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
+alias grep=ggrep
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 # nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && source "/opt/homebrew/opt/nvm/nvm.sh" --no-use
 
-# Created by `pipx` on 2022-03-13 21:35:41
-export PATH="/Users/frank/.krew/bin:/Users/frank/.nvm/versions/node/v16.13.2/bin:/opt/homebrew/opt/libpq/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH:/Users/frank/.local/bin"
+#export PATH="/Users/frank/.pyenv/shims:/Users/frank/bin/google-cloud-sdk/bin:/Users/frank/.krew/bin:/frank/.nvm/versions/node/v16.13.2/bin:/opt/homebrew/bin:$PATH:/Users/frank/.local/bin"
 
 # Git customization
 alias r='cd $(git root)'
@@ -69,6 +84,9 @@ function gpip() {
 
 # Custom aider command line options
 alias 'myaider'='aider --no-auto-commits --no-attribute-commit-message-committer --vim'
+
+# thefuck
+eval $(thefuck --alias)
 
 # Ability to toggle on/off the pip venv requirement
 toggle_pip_venv() {
@@ -156,6 +174,11 @@ new_justfile () {
 }
 
 eval "$(atuin init zsh)"
+
+eval "$(zoxide init zsh)"
+
+# Setup direnv
+eval "$(direnv hook zsh)"
 
 source ~/src/dotfiles/zshrc_secrets
 
