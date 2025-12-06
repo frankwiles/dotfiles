@@ -181,3 +181,9 @@ eval "$(direnv hook zsh)"
 source ~/src/dotfiles/zshrc_secrets
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Claude Code Model Switcher Aliases
+alias cc='claude'
+alias ccg='claude-glm'
+alias ccg45='claude-glm-4.5'
+alias ccf='claude-glm-fast'
