@@ -182,6 +182,33 @@ source ~/src/dotfiles/zshrc_secrets
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Zellij layout capture helper 
+# Dump current zellij layout to a named file in ~/.config/zellij/layouts
+zellij-save-layout() {
+    local layout_name="$1"
+    local layout_dir="$HOME/.config/zellij/layouts"
+
+    if [[ -z "$layout_name" ]]; then
+        echo "Usage: zellij-save-layout <layout-name>"
+        return 1
+    fi
+
+    mkdir -p "$layout_dir" || {
+        echo "Failed to create layout directory: $layout_dir"
+        return 1
+    }
+
+    local target_file="$layout_dir/${layout_name}.kdl"
+
+    # Dump the layout while safely redirecting to the file
+    if zellij action dump-layout > "$target_file"; then
+        echo "Layout saved to: $target_file"
+    else
+        echo "Failed to dump layout"
+        return 1
+    fi
+}
+
 # Claude Code Model Switcher Aliases
 alias cc='claude'
 alias ccg='claude-glm'
