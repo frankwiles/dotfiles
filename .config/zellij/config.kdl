@@ -272,6 +272,124 @@ plugins {
     }
 }
 
+// Custom themes
+themes {
+    revsys {
+        text_unselected {
+            base 232 229 218
+            background 0 0 0 
+            emphasis_0 81 147 247
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 232 229 218
+        }
+        text_selected {
+            base 232 229 218
+            background 81 147 247
+            emphasis_0 29 40 73
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 232 229 218
+        }
+        ribbon_unselected {
+            base 232 229 218
+            background 29 40 73
+            emphasis_0 81 147 247
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 232 229 218
+        }
+        ribbon_selected {
+            base 29 40 73
+            background 81 147 247
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 29 40 73
+        }
+        table_title {
+            base 81 147 247
+            background 29 40 73
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 81 147 247
+        }
+        table_cell_unselected {
+            base 232 229 218
+            background 29 40 73
+            emphasis_0 81 147 247
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 232 229 218
+        }
+        table_cell_selected {
+            base 29 40 73
+            background 81 147 247
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 29 40 73
+        }
+        list_unselected {
+            base 232 229 218
+            background 29 40 73
+            emphasis_0 81 147 247
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 232 229 218
+        }
+        list_selected {
+            base 29 40 73
+            background 81 147 247
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 29 40 73
+        }
+        frame_unselected {
+            base 205 195 146
+            background 29 40 73
+            emphasis_0 81 147 247
+            emphasis_1 232 229 218
+            emphasis_2 176 46 12
+            emphasis_3 205 195 146
+        }
+        frame_selected {
+            base 176 46 12
+            background 29 40 73
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 176 46 12
+        }
+        frame_highlight {
+            base 176 46 12
+            background 29 40 73
+            emphasis_0 81 147 247
+            emphasis_1 232 229 218
+            emphasis_2 205 195 146
+            emphasis_3 176 46 12
+        }
+        exit_code_success {
+            base 81 147 247
+            background 29 40 73
+            emphasis_0 232 229 218
+            emphasis_1 205 195 146
+            emphasis_2 176 46 12
+            emphasis_3 81 147 247
+        }
+        exit_code_error {
+            base 176 46 12
+            background 29 40 73
+            emphasis_0 232 229 218
+            emphasis_1 81 147 247
+            emphasis_2 205 195 146
+            emphasis_3 176 46 12
+        }
+    }
+}
+
 // Plugins to load in the background when a new session starts
 // eg. "file:/path/to/my-plugin.wasm"
 // eg. "https://example.com/my-plugin.wasm"
@@ -290,8 +408,8 @@ web_client {
  
 // Choose the theme that is specified in the themes section.
 // Default: default
-// 
-// theme "dracula"
+//
+theme "revsys"
  
 // Choose the base input mode of zellij.
 // Default: normal
@@ -315,7 +433,7 @@ default_mode "locked"
 // The folder in which Zellij will look for layouts
 // (Requires restart)
 // 
-// layout_dir "/tmp"
+layout_dir "/Users/frank/.config/zellij/layouts/"
  
 // The folder in which Zellij will look for themes
 // (Requires restart)
