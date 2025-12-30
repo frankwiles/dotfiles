@@ -1,5 +1,5 @@
 layout {
-    cwd "/Users/frank/src/peer-learning"
+    cwd "/Users/frank/src/revsys.com"
     tab name="NeoVim" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
@@ -7,6 +7,15 @@ layout {
         pane command="nvim" {
             start_suspended true
         }
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    tab name="Claude Code" hide_floating_panes=true {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        pane
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
         }
@@ -20,25 +29,11 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="Claude" hide_floating_panes=true {
-        pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
-        }
-        pane command="claude" {
-            start_suspended true
-        }
-        pane size=1 borderless=true {
-            plugin location="zellij:status-bar"
-        }
-    }
     tab name="Docker Compose" focus=true hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
-        pane command="docker" focus=true {
-            args "compose" "up"
-            start_suspended true
-        }
+        pane focus=true
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
         }
