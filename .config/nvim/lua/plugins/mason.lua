@@ -13,7 +13,7 @@ return {
       "debugpy",
       "json-lsp",
       "lua-language-server",
-      "pyright",
+      -- Note: ty is installed via pipx/pip, not Mason
       "ruff",
       "rustywind",
       "tailwindcss-language-server",

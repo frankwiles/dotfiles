@@ -3,43 +3,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        pyright = {
-          capabilities = {
-            textDocument = {
-              publishDiagnostics = {
-                tagSupport = {
-                  valueSet = { 2 },
-                },
-              },
-            },
-          },
-          settings = {
-            pyright = {
-              -- Using Ruff's import organizer
-              disableOrganizeImports = true,
-            },
-            python = {
-              analysis = {
-                -- Enable auto-import completions
-                autoImportCompletions = true,
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                diagnosticMode = "openFilesOnly",
-                -- Enable type checking
-                typeCheckingMode = "basic",
-                -- Include function signatures in completions
-                completeFunctionCalls = true,
-                -- Index common libraries for auto-import
-                indexing = true,
-                packageIndexDepths = {
-                  [""] = 4,
-                  ["django"] = 4,
-                  ["datetime"] = 2,
-                },
-              },
-            },
-          },
-        },
+        -- Explicitly disable pyright since we're using ty
+        pyright = false,
         ruff = {
           init_options = {
             settings = {
@@ -51,27 +16,12 @@ return {
         },
       },
       setup = {
-        pyright = function(_, opts)
-          local lspconfig = require("lspconfig")
-          lspconfig.pyright.setup(vim.tbl_deep_extend("force", opts, {
-            on_attach = function(client, bufnr)
-              -- Enable completion-based auto-imports
-              client.server_capabilities.completionProvider = {
-                resolveProvider = true,
-                triggerCharacters = { ".", '"', "'", "`", "/", "@" },
-              }
-
-              -- Add keymaps specific to Python files
-              local keymap_opts = { buffer = bufnr, noremap = true, silent = true }
-              vim.keymap.set(
-                "n",
-                "<leader>ca",
-                vim.lsp.buf.code_action,
-                vim.tbl_extend("force", keymap_opts, { desc = "Code Actions" })
-              )
-            end,
-          }))
-          return true
+        -- Manually configure ty LSP since it's not in lspconfig yet
+        ["*"] = function(server, opts)
+          if server == "pyright" then
+            -- Skip pyright setup entirely
+            return true
+          end
         end,
         ruff = function(_, opts)
           local lspconfig = require("lspconfig")
@@ -96,6 +46,61 @@ return {
         end,
       },
     },
+  },
+  -- Manually setup ty LSP since it's not in lspconfig yet
+  {
+    "neovim/nvim-lspconfig",
+    opts = function()
+      -- Setup ty LSP for Python files
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "python",
+        callback = function(args)
+          local root_dir = vim.fs.root(args.buf, { "pyproject.toml", "setup.py", "setup.cfg", ".git" })
+          if not root_dir then
+            return
+          end
+
+          vim.lsp.start({
+            name = "ty",
+            cmd = { "ty", "server" },
+            root_dir = root_dir,
+            settings = {
+              ty = {
+                -- Diagnostic mode for type checking
+                diagnosticMode = "openFilesOnly",
+                -- Enable completions with auto-import
+                completions = {
+                  autoImport = true,
+                },
+                -- Enable inlay hints
+                inlayHints = {
+                  variableTypes = true,
+                  functionReturnTypes = true,
+                  parameterTypes = true,
+                  parameterNames = true,
+                },
+              },
+            },
+            on_attach = function(client, bufnr)
+              -- Enable completion-based auto-imports
+              client.server_capabilities.completionProvider = {
+                resolveProvider = true,
+                triggerCharacters = { ".", '"', "'", "`", "/", "@" },
+              }
+
+              -- Add keymaps specific to Python files
+              local keymap_opts = { buffer = bufnr, noremap = true, silent = true }
+              vim.keymap.set(
+                "n",
+                "<leader>ca",
+                vim.lsp.buf.code_action,
+                vim.tbl_extend("force", keymap_opts, { desc = "Code Actions" })
+              )
+            end,
+          })
+        end,
+      })
+    end,
   },
 }
 

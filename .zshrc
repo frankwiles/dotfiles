@@ -212,5 +212,6 @@ zellij-save-layout() {
 # Claude Code Model Switcher Aliases
 alias cc='claude'
 alias ccg='claude-glm'
+alias ccg46='claude-glm-4.6'
 alias ccg45='claude-glm-4.5'
 alias ccf='claude-glm-fast'
