@@ -123,3 +123,82 @@ end, { desc = "Show Import Actions" })
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
 map("n", "<leader>tt", "<cmd>enew | terminal<CR>i", { desc = "Open new terminal buffer" })
+
+-- Rust-specific keymaps (only active in Rust files)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "rust",
+  callback = function(event)
+    local bufnr = event.buf
+    local opts = { buffer = bufnr }
+
+    -- Expand macro recursively
+    map("n", "<leader>rm", function()
+      vim.cmd.RustLsp("expandMacro")
+    end, vim.tbl_extend("force", opts, { desc = "Expand macro recursively" }))
+
+    -- View HIR (High-level Intermediate Representation)
+    map("n", "<leader>rh", function()
+      vim.cmd.RustLsp({ "view", "hir" })
+    end, vim.tbl_extend("force", opts, { desc = "View HIR" }))
+
+    -- View MIR (Mid-level Intermediate Representation)
+    map("n", "<leader>rM", function()
+      vim.cmd.RustLsp({ "view", "mir" })
+    end, vim.tbl_extend("force", opts, { desc = "View MIR" }))
+
+    -- Open Cargo.toml
+    map("n", "<leader>rc", function()
+      vim.cmd.RustLsp("openCargo")
+    end, vim.tbl_extend("force", opts, { desc = "Open Cargo.toml" }))
+
+    -- Parent Module
+    map("n", "<leader>rp", function()
+      vim.cmd.RustLsp("parentModule")
+    end, vim.tbl_extend("force", opts, { desc = "Go to parent module" }))
+
+    -- Join Lines (smartly merge lines in Rust)
+    map("n", "<leader>rj", function()
+      vim.cmd.RustLsp("joinLines")
+    end, vim.tbl_extend("force", opts, { desc = "Join lines (smart)" }))
+
+    -- Structural Search Replace
+    map("n", "<leader>rs", function()
+      vim.cmd.RustLsp("ssr")
+    end, vim.tbl_extend("force", opts, { desc = "Structural search replace" }))
+
+    -- Hover actions
+    map("n", "<leader>rH", function()
+      vim.cmd.RustLsp({ "hover", "actions" })
+    end, vim.tbl_extend("force", opts, { desc = "Hover actions" }))
+
+    -- Explain error
+    map("n", "<leader>re", function()
+      vim.cmd.RustLsp("explainError")
+    end, vim.tbl_extend("force", opts, { desc = "Explain error" }))
+
+    -- Render diagnostic
+    map("n", "<leader>rd", function()
+      vim.cmd.RustLsp("renderDiagnostic")
+    end, vim.tbl_extend("force", opts, { desc = "Render diagnostic" }))
+
+    -- Code action group (common Rust refactorings)
+    map("n", "<leader>ra", function()
+      vim.cmd.RustLsp("codeAction")
+    end, vim.tbl_extend("force", opts, { desc = "Rust code action" }))
+
+    -- Run runnables (like tests, main, etc.)
+    map("n", "<leader>rr", function()
+      vim.cmd.RustLsp("runnables")
+    end, vim.tbl_extend("force", opts, { desc = "Run runnables" }))
+
+    -- Debug runnables
+    map("n", "<leader>rD", function()
+      vim.cmd.RustLsp("debuggables")
+    end, vim.tbl_extend("force", opts, { desc = "Debug runnables" }))
+
+    -- Run test under cursor
+    map("n", "<leader>rt", function()
+      vim.cmd.RustLsp("testables")
+    end, vim.tbl_extend("force", opts, { desc = "Run test" }))
+  end,
+})

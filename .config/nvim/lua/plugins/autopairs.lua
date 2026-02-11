@@ -1,6 +1,6 @@
 return {
   -- Disable mini.pairs
-  { "echasnovski/mini.pairs", enabled = false },
+  { "nvim-mini/mini.pairs", enabled = false },
 
   -- Add nvim-autopairs
   {
@@ -109,3 +109,4 @@ return {
     end,
   },
 }
+
