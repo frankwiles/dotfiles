@@ -14,6 +14,7 @@ if [ -f '/Users/frank/bin/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/frank
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/frank/bin/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/frank/bin/google-cloud-sdk/completion.zsh.inc'; fi
 
+
 export EDITOR=nvim
 
 export DIRENV_WARN_TIMEOUT=60m
@@ -218,6 +219,8 @@ alias ggp='gg prs'
 # Claude Code Model Switcher Aliases
 alias cc='claude'
 alias ccg='claude-glm'
+alias ccg47='claude-glm-4.7'
 alias ccg46='claude-glm-4.6'
 alias ccg45='claude-glm-4.5'
 alias ccf='claude-glm-fast' 
+
