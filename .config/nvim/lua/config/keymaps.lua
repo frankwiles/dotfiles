@@ -28,8 +28,8 @@ map("n", "<leader>fk", "<cmd>FzfLua keymaps<CR>", { desc = "Search keymaps" })
 -- Quick JSON view
 -- Add this to your keymaps
 map("n", "<leader>js", function()
-  -- Create a new scratch buffer
-  vim.cmd("new")
+  -- Create a new unnamed buffer in current window
+  vim.cmd("enew")
   -- Set it to JSON filetype
   vim.bo.filetype = "json"
   -- Set it as a scratch buffer
