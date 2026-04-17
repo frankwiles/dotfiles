@@ -122,6 +122,12 @@ end, { desc = "Show Import Actions" })
 
 -- Buffer management
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Create new empty buffer" })
+map("n", "<leader>ba", function()
+  -- Close all buffers
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    vim.api.nvim_buf_delete(buf, { force = true })
+  end
+end, { desc = "Close all buffers" })
 map("n", "<leader>tt", "<cmd>enew | terminal<CR>i", { desc = "Open new terminal buffer" })
 
 -- Rust-specific keymaps (only active in Rust files)
