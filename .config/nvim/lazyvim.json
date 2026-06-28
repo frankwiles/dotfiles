@@ -1,6 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.tabnine",
     "lazyvim.plugins.extras.lang.rust"
   ],
   "install_version": 7,

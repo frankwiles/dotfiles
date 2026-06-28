@@ -1,21 +1,6 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
--- require("lazy").setup({
---   { "codota/tabnine-nvim", build = "./dl_binaries.sh" },
--- })
-
--- require("tabnine").setup({
---   disable_auto_comment = true,
---   accept_keymap = "<Tab>",
---   dismiss_keymap = "<C-]>",
---   debounce_ms = 800,
---   suggestion_color = { gui = "#808080", cterm = 244 },
---   exclude_filetypes = { "TelescopePrompt", "NvimTree" },
---   log_file_path = nil, -- absolute path to Tabnine log file
---   ignore_certificate_errors = false,
--- })
-
 -- In init.lua
 local function tailwind_color_replace(from_color, to_color)
   -- Use a simpler pattern that works better with Lua string escaping
